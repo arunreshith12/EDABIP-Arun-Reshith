@@ -4,12 +4,17 @@
 
 This project is an Analytics Dashboard created using HTML, CSS, and JavaScript. It displays business analytics, performance metrics, revenue forecasts, demand predictions, and an ML Model Registry.
 
+
+## Output Screenshot
+<img width="1408" height="881" alt="Screenshot 2026-10-09 at 1 55 19 PM" src="https://github.com/user-attachments/assets/c3a662b9-3c40-4076-a7f2-882c2f9d0c32" />
+
+
 ## Technologies Used
 
 * HTML5
 * CSS3
 * JavaScript
-* Canvas API
+  
 
 ## Features
 
