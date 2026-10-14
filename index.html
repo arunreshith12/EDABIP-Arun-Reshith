@@ -1,474 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Analytics Dashboard</title>
-
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EDABIP - Analytics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
 
-            //----header---//
-    <header class="top-header">
+  <!-- Top Nav Header -->
+  <header class="top-nav">
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="searchInput" placeholder="Search">
+      <button class="clear-btn" id="clearSearch"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" title="Notifications">
+        <img src="./Assets/" alt="Bell" onerror="this.replaceWith(document.createElement('i'));" class="asset-icon">
+        <i class="fa-regular fa-bell"></i>
+      </button>
+      <div class="user-badge">
+        <img src="./Assets/logo.png" alt="User" onerror="this.style.display='none'" class="asset-icon">
+        <i class="fa-solid fa-bolt"></i>
+      </div>
+    </div>
+  </header>
 
-        <div class="search-box">
-            <span>⌕</span>
-            <input type="text" id="searchInput" placeholder="Search">
-            <button id="clearSearch">×</button>
+  <div class="container">
+    
+    <!-- Title and Actions -->
+    <div class="page-title-row">
+      <h1>Analytics</h1>
+      <div class="title-actions">
+        <span class="refresh-indicator"><i class="fa-regular fa-clock"></i> Last Refreshed: <span id="lastRefreshedText">2h ago</span></span>
+        <button class="btn-dark" id="btnExport"><i class="fa-solid fa-file-export"></i> Export</button>
+      </div>
+    </div>
+
+    <!-- Welcome & Control Bar -->
+    <section class="banner-card">
+      <div class="banner-left">
+        <div class="banner-heading">
+          <h2>Welcome Back, ARun!</h2>
+          <span class="pill-badge pill-live"><span class="dot"></span> Real Time</span>
         </div>
+        <p>Stay Organised with real time insight. Monitor Your Business Performance and key Metrics.</p>
+      </div>
 
-        <div class="header-right">
-            <span class="notification">🔔</span>
+      <div class="banner-controls">
+        <button class="btn-outline" id="btnDateFilter"><i class="fa-regular fa-calendar"></i> Last 30 Days</button>
+        <select class="custom-select" id="categoryFilter">
+          <option value="all">All Categories</option>
+          <option value="regression">Regression</option>
+          <option value="forecast">Forecast</option>
+          <option value="classification">Classification</option>
+        </select>
+        <button class="btn-dark" id="btnRefresh"><i class="fa-solid fa-rotate"></i> Refresh</button>
+      </div>
+    </section>
 
-            <div class="profile-icon">
-                <img src="./Assets/logo.png" alt="">
-            </div>
+    <!-- 4 KPI Metrics -->
+    <section class="kpi-grid">
+      <!-- Model Accuracy -->
+      <div class="kpi-card">
+        <div class="kpi-header">
+          <div class="kpi-icon-box dark-teal"><i class="fa-solid fa-chart-simple"></i></div>
+          <h3>Model Accuracy</h3>
         </div>
-
-    </header>
-
-
-     <!-- MAIN  -->
-
-    <main class="container">
-
-        <!-- Page Header -->
-
-        <section class="page-header">
-
-            <h1>Analytics</h1>
-
-            <div class="page-actions">
-
-                <span class="refresh-info">
-                    ↻ Last Refreshed: 5sec ago
-                </span>
-
-                <button class="export-btn">
-                    ⇩ Export
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= WELCOME CARD ================= -->
-
-        <section class="welcome-card">
-
-            <div class="welcome-text">
-
-                <div class="welcome-title">
-
-                    <h2>Welcome Back, Arun Reshith!</h2>
-
-                    <span class="realtime">
-                        • &nbsp; Real Time
-                    </span>
-
-                </div>
-
-                <p>
-                    Stay Organised with real time insight, Monitor Your Business
-                    Performance and key Metrics.
-                </p>
-
-            </div>
-
-
-            <div class="welcome-actions">
-
-                <button class="outline-btn">
-                    ▣ &nbsp; Last 30 Days
-                </button >
-                <button class="Categories">
-                <label for="Categories">Categories:</label>
-                <select name="fruits" id="Categories">
-                <option value="apple">Accounts</option>
-                <option value="banana">Billing</option>
-                <option value="orange">Office</option>
-                <option value="mango">Cash</option>
-                </select>
-                    </button>
-
-                <!-- <button class="outline-btn">
-                    All Categories
-                    
-                    <span>⌄</span>
-                </button> -->
-
-                <button class="dark-btn" id="refreshBtn">
-                    ↻ &nbsp; Refresh
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= METRIC CARDS ================= -->
-
-        <section class="metrics-grid">
-
-            <!-- Card 1 -->
-
-            <div class="metric-card">
-
-                <div class="metric-top">
-
-                    <div class="metric-icon">
-                        ▥
-                    </div>
-
-                    <h3>Model Accuracy</h3>
-
-                </div>
-
-                <div class="metric-content">
-
-                    <strong>98.4%</strong>
-
-                    <div class="mini-chart">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-
-                </div>
-
-                <div class="metric-badge green">
-                    ↗ +12% vs last month
-                </div>
-
-            </div>
-
-
-            <!-- Card 2 -->
-
-            <div class="metric-card">
-
-                <div class="metric-top">
-
-                    <div class="metric-icon">
-                        ⌁
-                    </div>
-
-                    <h3>Precision</h3>
-
-                </div>
-
-                <div class="metric-content">
-
-                    <strong>0.97</strong>
-
-                    <div class="line-mini-chart">
-                        <svg viewBox="0 0 180 50">
-                            <path
-                                d="M5 32
-                                C25 28, 35 36, 50 30
-                                C65 23, 70 38, 85 32
-                                C105 24, 115 34, 130 27
-                                C145 18, 160 25, 175 22"
-                                fill="none"
-                                stroke="#173f3d"
-                                stroke-width="2"
-                            />
-                        </svg>
-                    </div>
-
-                </div>
-
-                <div class="metric-badge red">
-                    ↘ +0.3% vs last month
-                </div>
-
-            </div>
-
-
-            <!-- Card 3 -->
-
-            <div class="metric-card">
-
-                <div class="metric-top">
-
-                    <div class="metric-icon">
-                        ◉
-                    </div>
-
-                    <h3>Recall</h3>
-
-                </div>
-
-                <div class="metric-content">
-
-                    <strong>0.96</strong>
-
-                    <div class="mini-chart">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-
-                </div>
-
-                <div class="metric-badge blue">
-                    ↗ +45 new this week
-                </div>
-
-            </div>
-
-
-            <!-- Card 4 -->
-
-            <div class="metric-card">
-
-                <div class="metric-top">
-
-                    <div class="metric-icon">
-                        ♧
-                    </div>
-
-                    <h3>F1 Score</h3>
-
-                </div>
-
-                <div class="metric-content">
-
-                    <strong>0.96</strong>
-
-                    <div class="mini-chart">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-
-                </div>
-
-                <div class="metric-badge green">
-                    +8.1% vs last quarter
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= CHART SECTION ================= -->
-
-        <section class="charts-grid">
-
-
-            <!-- Revenue Chart -->
-
-            <div class="chart-card">
-
-                <div class="chart-header">
-
-                    <h2>Revenue Forecast</h2>
-
-                    <button class="outline-btn small">
-                        Last 6 Months
-                        <span>⌄</span>
-                    </button>
-
-                </div>
-
-                <div class="chart-container">
-
-                    <canvas id="revenueChart"></canvas>
-
-                </div>
-
-            </div>
-
-
-            <!-- Demand Chart -->
-
-            <div class="chart-card">
-
-                <div class="chart-header">
-
-                    <h2>Demand Prediction (Next 7 Days)</h2>
-
-                    <button class="outline-btn small">
-                        Last 6 Months
-                        <span>⌄</span>
-                    </button>
-
-                </div>
-
-                <div class="chart-container">
-
-                    <canvas id="demandChart"></canvas>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= MODEL REGISTRY ================= -->
-
-        <section class="registry-card">
-
-            <div class="registry-header">
-
-                <h2>ML Model Registry</h2>
-
-                <button class="view-all">
-                    View All ⌄
-                </button>
-
-            </div>
-
-
-            <div class="table-wrapper">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-                            <th>Model Name</th>
-                            <th>Type</th>
-                            <th>Accuracy</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-
-                    </thead>
-
-                    <tbody id="modelTable">
-
-                        <tr>
-                            <td>Sales Forecasting</td>
-                            <td>Regression</td>
-                            <td>98.4%</td>
-
-                            <td>
-                                <span class="status training">
-                                    Training 75%
-                                </span>
-                            </td>
-
-                            <td>
-                                <button class="view-btn">View</button>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td>Demand Prediction</td>
-                            <td>Forecast</td>
-                            <td>94.2%</td>
-
-                            <td>
-                                <span class="status active">
-                                    Active
-                                </span>
-                            </td>
-
-                            <td>
-                                <button class="view-btn">View</button>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td>Customer Churn</td>
-                            <td>Classification</td>
-                            <td>91.8%</td>
-
-                            <td>
-                                <span class="status active">
-                                    Active
-                                </span>
-                            </td>
-
-                            <td>
-                                <button class="view-btn">View</button>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td>Inventory Optimization</td>
-                            <td>Optimization</td>
-                            <td>-</td>
-
-                            <td>
-                                <span class="status pending">
-                                    Pending
-                                </span>
-                            </td>
-
-                            <td>
-                                <button class="view-btn">View</button>
-                            </td>
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= FOOTER ================= -->
-
-        <footer>
-
-            <p>
-                © 2026 EDABIP. All rights reserved.
-                Enterprise Data Analytics & Business Intelligence Platform
-            </p>
-
-            <div>
-                Privacy Policy · Terms · Help & Support
-                &nbsp;&nbsp; v2.1.0
-            </div>
-
-        </footer>
-
-    </main>
-
-
-    <!-- Floating Button -->
-
-    <button class="floating-button">
-        ⚡
-    </button>
-
-
-    <script src="script.js"></script>
-
+        <div class="kpi-body">
+          <span class="kpi-number" id="kpiAccuracy">98.4%</span>
+          <canvas class="mini-sparkline" id="sparkAccuracy" width="100" height="24"></canvas>
+        </div>
+        <span class="tag tag-green"><i class="fa-solid fa-arrow-trend-up"></i> +12% vs last month</span>
+      </div>
+
+      <!-- Precision -->
+      <div class="kpi-card">
+        <div class="kpi-header">
+          <div class="kpi-icon-box teal"><i class="fa-solid fa-chart-line"></i></div>
+          <h3>Precision</h3>
+        </div>
+        <div class="kpi-body">
+          <span class="kpi-number" id="kpiPrecision">0.97</span>
+          <canvas class="mini-sparkline" id="sparkPrecision" width="100" height="24"></canvas>
+        </div>
+        <span class="tag tag-orange"><i class="fa-solid fa-arrow-trend-up"></i> +0.3% vs last month</span>
+      </div>
+
+      <!-- Recall -->
+      <div class="kpi-card">
+        <div class="kpi-header">
+          <div class="kpi-icon-box blue-gray"><i class="fa-solid fa-crosshairs"></i></div>
+          <h3>Recall</h3>
+        </div>
+        <div class="kpi-body">
+          <span class="kpi-number" id="kpiRecall">0.96</span>
+          <canvas class="mini-sparkline" id="sparkRecall" width="100" height="24"></canvas>
+        </div>
+        <span class="tag tag-blue"><i class="fa-solid fa-arrow-trend-up"></i> +45 new this week</span>
+      </div>
+
+      <!-- F1 Score -->
+      <div class="kpi-card">
+        <div class="kpi-header">
+          <div class="kpi-icon-box forest"><i class="fa-solid fa-flask"></i></div>
+          <h3>F1 Score</h3>
+        </div>
+        <div class="kpi-body">
+          <span class="kpi-number" id="kpiF1">0.96</span>
+          <canvas class="mini-sparkline" id="sparkF1" width="100" height="24"></canvas>
+        </div>
+        <span class="tag tag-light-green"><i class="fa-solid fa-arrow-trend-up"></i> +0.1% vs last quarter</span>
+      </div>
+    </section>
+
+    <!-- Charts Grid -->
+    <section class="charts-grid">
+      <!-- Revenue Forecast -->
+      <div class="chart-card">
+        <div class="card-head">
+          <h3>Revenue Forecast</h3>
+          <select class="custom-select" id="revenuePeriodSelect">
+            <option value="6">Last 6 Months</option>
+            <option value="12">Last 12 Months</option>
+          </select>
+        </div>
+        <div class="chart-wrapper">
+          <canvas id="revenueChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Demand Prediction -->
+      <div class="chart-card">
+        <div class="card-head">
+          <h3>Demand Prediction (Next 7 Days)</h3>
+          <select class="custom-select" id="demandPeriodSelect">
+            <option value="next7">Last 6 Months</option>
+            <option value="prev7">Last 30 Days</option>
+          </select>
+        </div>
+        <div class="chart-wrapper">
+          <canvas id="demandChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ML Model Registry Table -->
+    <section class="table-card">
+      <div class="card-head">
+        <h3>ML Model Registry</h3>
+        <span class="view-all">View All <i class="fa-solid fa-chevron-down"></i></span>
+      </div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Model Name</th>
+              <th>Type</th>
+              <th>Accuracy</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="modelTableBody">
+            <!-- Dynamically populated from dummy API -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div>© 2026 EDABIP. All rights reserved. Enterprise Data Analytics & Business Intelligence Platform</div>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a> • <a href="#">Terms</a> • <a href="#">Help & Support</a> <span class="version">v2.1.0</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Floating Action Symbol Button (bottom-right) -->
+  <button class="floating-symbol-btn" id="floatingBtn" title="Platform Tool">
+    <img src="./Assets/logo.png" alt="Icon" onerror="this.style.display='none'" class="asset-symbol">
+    <!-- <i class="fa-solid fa-bolt-lightning"></i> -->
+  </button>
+
+  <script src="app.js"></script>
 </body>
 </html>

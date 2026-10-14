@@ -53,6 +53,3 @@ analytics-dashboard/
 * Implementing search functionality
 * Creating responsive web pages
 
-## Author
-
-Developed as an HTML, CSS, and JavaScript practice project.
