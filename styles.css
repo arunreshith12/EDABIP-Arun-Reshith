@@ -553,7 +553,8 @@ tbody tr:hover {
   justify-content: space-between;
   font-size: 0.75rem;
   color: var(--text-muted);
-  margin-top: 10px;
+  /* margin-top: 10px; */
+  padding: 50px;
 }
 
 .footer-links a {
