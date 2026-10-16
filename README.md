@@ -6,7 +6,10 @@ This project is an Analytics Dashboard created using HTML, CSS, and JavaScript. 
 
 
 ## Output Screenshot
-<img width="1408" height="881" alt="Screenshot 2026-10-09 at 1 55 19 PM" src="https://github.com/user-attachments/assets/c3a662b9-3c40-4076-a7f2-882c2f9d0c32" />
+<img width="1408" height="881" alt="Screenshot 2026-10-14 at 5 29 07 PM" src="https://github.com/user-attachments/assets/01c9273d-6542-4363-a10d-e5dbb6321840" />
+<img width="1408" height="881" alt="Screenshot 2026-10-14 at 5 29 21 PM" src="https://github.com/user-attachments/assets/f0a0ee89-55b3-4281-9e0e-00334f828301" />
+
+
 
 
 ## Technologies Used
